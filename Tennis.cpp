@@ -29,13 +29,21 @@ Tennis::Tennis(int playerBtnPin[], int playerLedPin[], const uint8_t dataPin, un
 
 }
 
-void Tennis::test(){
+void Tennis::test1(){
+    FastLED.setBrightness(50);
     fill_rainbow(_leds, 120, 150, 7); 
     FastLED.show(); 
 }
+void Tennis::test2(){
+    FastLED.setBrightness(50);
+    fill_rainbow(_leds, 120, 100, 30); 
+    FastLED.show(); 
+}
 
-
-// Menu (set brightness and start game)
+///
+// DELAYS/WHILES !!!
+///
+// Something here causes glitches with 2 instances of class - can this section be removed???
 void Tennis::menu(){
   // implement later	
    digitalWrite(_playerLedPin[0], HIGH);  // activate both LEDs
@@ -100,16 +108,18 @@ void Tennis::game()
     FastLED.show();
 
     InitializePlayers();  // set the player-settings -> wait for keypress to start game
-
+    Serial.println("players initialized");
     GameLoop();           // main loop: move ball -> ball left gamefield? -> check keypress -> check if keypress in endzone -> change direction
-    
+    Serial.println("in game loop...");
     CheckScore();         // check who made score and show it
 
     CheckWinner();        // check if we have a winner
   }
 }
 
-
+///
+// DELAYS/WHILES !!!
+///
 void Tennis::InitializePlayers()
 {
 
@@ -133,7 +143,9 @@ void Tennis::InitializePlayers()
   }
 }
 
-
+///
+// DELAYS/WHILES !!!
+///
 void Tennis::GameLoop()
 {
   while (true)    // loop, exit with break when one player made a score
@@ -221,7 +233,9 @@ void Tennis::ChangeDirection()
   memset(_playerButtonPressed, -1, sizeof(_playerButtonPressed)); // clear keypress
 }
 
-
+///
+// DELAYS/WHILES !!!
+///
 void Tennis::CheckScore()
 {
   _previousButtonPos = -1;     // clear last ball-position at button-press
@@ -315,6 +329,9 @@ void Tennis::GenerateLastHit()
   }
 }
 
+///
+// DELAYS/WHILES !!!
+///
 void Tennis::BlinkNewScore(int pos, byte color)
 {
   for (int i = 1; i <= 4; i++)
@@ -325,7 +342,9 @@ void Tennis::BlinkNewScore(int pos, byte color)
   }
 }
 
-
+///
+// DELAYS/WHILES !!! 
+///
 void Tennis::Rainbow(boolean won)
 {
   for (int k = 0; k < 3; k++)   // 3 rounds rainbow

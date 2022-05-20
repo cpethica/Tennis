@@ -15,7 +15,7 @@ public:
   
   // public variables within class
   int numLeds;
-  int maxBright = 155; // max brightness
+  int maxBright = 55; // max brightness
   int gameSpeedMin    =       50; // min game-speed
   int gameSpeedMax    =        5; // max game-speed
   int gameSpeedStep   =        1; // fasten up when change direction
@@ -29,7 +29,8 @@ public:
   int NUM_LEDS        =      120; // number of leds per strip
 
   //public functions within class
-  void test();
+  void test1();
+  void test2();  
   void menu();    // menu and start game function
   boolean buttonBounce(byte button, byte bounceTime);
   void game();
@@ -53,14 +54,16 @@ private:
   int* _playerBtnPin;               // declaration of buttons variable within class only
   int* _playerLedPin;
   int _dataPin;
-  boolean _activeGame = false;                 // true when game is active
+
+  // change to true for testing....
+  boolean _activeGame = true;                 // true when game is active
   unsigned long _previousMoveMillis;           // time of last ball move
   unsigned long _previousButtonMillis;         // time of last button-press
   int _playerButtonPressed[2];                 // ball-position where button was pressed; „-1“ button not pressed
   int _previousButtonPos = -1;                 // position of last button-press
   byte _previousButtonColor;                   // color of field for last Button-press
   int _playerScore[2];                         // actual Score
-  byte _playerStart;                           // who starts game
+  byte _playerStart = 0;                           // who starts game
   int _gameSpeed;                              // actual game-speed
   int _ballDir = 1;                            // direction, ball is moving (+/- 1)
   int _ballPos;                                // actual ball-position
@@ -68,6 +71,7 @@ private:
   byte _previousButtonBright = maxBright / 2;  // bright of marked last position when button pressen
   byte _scoreDimBright       = maxBright / 4;  // bright of dimmed score
   CRGB _leds[120];
+  boolean _scoreFlag = false;                           // use in place of game while(true) loop
 
 };
 #endif
