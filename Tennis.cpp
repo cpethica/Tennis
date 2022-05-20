@@ -7,8 +7,8 @@
 #include "FastLED.h"
 Tennis::Tennis(int playerBtnPin[], int playerLedPin[], const uint8_t dataPin, unsigned int numLeds)
 {
-	pinMode(playerBtnPin[0], INPUT);   // PINs for buttons
-	pinMode(playerBtnPin[1], INPUT);
+	pinMode(playerBtnPin[0], INPUT_PULLUP);   // PINs for buttons
+	pinMode(playerBtnPin[1], INPUT_PULLUP);
 	_dataPin = dataPin;
 	const unsigned int _numLeds = numLeds;
 	_playerBtnPin = playerBtnPin;
@@ -19,14 +19,19 @@ Tennis::Tennis(int playerBtnPin[], int playerLedPin[], const uint8_t dataPin, un
         case 16:
             FastLED.addLeds<WS2812B, 16, GRB>(_leds, _numLeds);
             break;
-        case 17:
-            FastLED.addLeds<WS2812B, 17, GRB>(_leds, _numLeds);
+        case 18:
+            FastLED.addLeds<WS2812B, 18, GRB>(_leds, _numLeds);
             break;
         default:
       		Serial.println("Unsupported Pin");
       		break;
     }
 
+}
+
+void Tennis::test(){
+    fill_rainbow(_leds, 120, 150, 7); 
+    FastLED.show(); 
 }
 
 

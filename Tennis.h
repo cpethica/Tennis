@@ -14,6 +14,7 @@ public:
   Tennis(int playerBtnPin[], int playerLedPin[], const uint8_t dataPin, unsigned int numLeds);          // class constructor - setup class from skectch
   
   // public variables within class
+  int numLeds;
   int maxBright = 155; // max brightness
   int gameSpeedMin    =       50; // min game-speed
   int gameSpeedMax    =        5; // max game-speed
@@ -28,6 +29,7 @@ public:
   int NUM_LEDS        =      120; // number of leds per strip
 
   //public functions within class
+  void test();
   void menu();    // menu and start game function
   boolean buttonBounce(byte button, byte bounceTime);
   void game();
@@ -66,7 +68,6 @@ private:
   byte _previousButtonBright = maxBright / 2;  // bright of marked last position when button pressen
   byte _scoreDimBright       = maxBright / 4;  // bright of dimmed score
   CRGB _leds[120];
-
 
 };
 #endif
