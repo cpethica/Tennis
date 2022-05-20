@@ -84,7 +84,7 @@ boolean Tennis::buttonBounce(byte button, byte bounceTime) // bounce the button
 
 void Tennis::game()
 {
-  while (_activeGame)
+  if (_activeGame)
   {
 
     _gameSpeed = gameSpeedMin;           // set starting game speed
